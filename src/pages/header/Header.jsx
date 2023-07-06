@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import './Header.css';
 
 const Header = () => {
-  const tournamentName = useSelector((state) => state.tournament.name);
+  const pageName = useSelector((state) => state.global.pageName);
   return (
     <header>
       <h1>Tournament manager</h1>
-      <h2>{tournamentName}</h2>
+      <h2>{pageName}</h2>
     </header>
   );
 };
