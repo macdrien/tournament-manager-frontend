@@ -1,11 +1,13 @@
 header {
-  position: fixed;
+  position: sticky;
 
   display: flex;
   align-items: center;
 
   padding: 1vh 0 0 1vw;
   width: 99vw;
+
+  background-color: white;
 }
 
 header h1 {
