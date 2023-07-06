@@ -1,3 +1,9 @@
+.tournamentCreation {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+
 .teamsCountSection {
     text-align: center;
     display: flex;
@@ -16,4 +22,18 @@
 
 .teamsCountSelection label {
     text-align: center;
+}
+
+.teamsNames {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.teamsNames p {
+    text-align: center;
+}
+
+.teamsNames input {
+    padding: 1px;
 }
