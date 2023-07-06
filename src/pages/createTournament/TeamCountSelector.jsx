@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const TeamsCountSelector = (props) => {
     const {options, checkedValue, changeSelection} = props;
@@ -25,5 +26,11 @@ const TeamsCountSelector = (props) => {
     </div>
   </div>;
 }
+
+TeamsCountSelector.propTypes = {
+  options: PropTypes.array.isRequired,
+  checkedValue: PropTypes.number.isRequired,
+  changeSelection: PropTypes.func.isRequired,
+};
 
 export default TeamsCountSelector;
