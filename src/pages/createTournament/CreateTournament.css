@@ -1,0 +1,19 @@
+.teamsCountSection {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.teamsCountSelection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    gap: 5px;
+}
+
+.teamsCountSelection label {
+    text-align: center;
+}
