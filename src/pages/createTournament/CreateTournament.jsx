@@ -8,8 +8,10 @@ import TeamsNames from "./TeamsNames";
 import TournamentSection from "./TournamentSection";
 
 import "./CreateTournament.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateTournament = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [state, setState] = useState({
     options: [2, 4, 8, 16],
@@ -71,6 +73,7 @@ const CreateTournament = () => {
         teams: state.teams.slice(0, state.numberOfTeams),
       })
     );
+    navigate(`/tournament/${state.tournamentName}`);
   };
 
   const onResetClick = () => {

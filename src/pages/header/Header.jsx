@@ -1,14 +1,18 @@
-import { useSelector } from "react-redux";
-import './Header.css';
+import PropTypes from "prop-types";
+import "./Header.css";
 
-const Header = () => {
-  const pageName = useSelector((state) => state.global.pageName);
+const Header = (props) => {
+  const { title } = props;
   return (
     <header>
       <h1>Tournament manager</h1>
-      <h2>{pageName}</h2>
+      <h2>{title}</h2>
     </header>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string,
 };
 
 export default Header;

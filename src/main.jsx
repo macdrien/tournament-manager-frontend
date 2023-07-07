@@ -1,14 +1,34 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import store from './reducers/store.js';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.jsx";
+import "./index.css";
+import store from "./reducers/store.js";
 import { Provider } from "react-redux";
+import CreateTournament from "./pages/createTournament/CreateTournament.jsx";
+import { Tournament } from "./pages/index.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "create",
+        element: <CreateTournament />,
+      },
+      {
+        path: "tournament/:tournamentName",
+        element: <Tournament />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
