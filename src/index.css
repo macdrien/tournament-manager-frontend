@@ -22,3 +22,7 @@ button:hover {
   box-shadow: none;
   background-color: #cccccc;
 }
+
+.title {
+  font-size: 1.1em;
+}

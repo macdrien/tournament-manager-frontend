@@ -4,7 +4,7 @@ const TeamsNames = (props) => {
     const { teams, onChange, teamsCount } = props;
 
     return <div className="teamsNames">
-        <p>Teams names</p>
+        <p className='title'>Teams names</p>
         { teams.slice(0, teamsCount).map((team, index) => 
             <input
                 key={index}

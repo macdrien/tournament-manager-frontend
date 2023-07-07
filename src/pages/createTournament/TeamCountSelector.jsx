@@ -5,7 +5,7 @@ const TeamsCountSelector = (props) => {
     const {options, checkedValue, changeSelection} = props;
 
     return <div className="teamsCountSection">
-    <p>
+    <p className="title">
       How many teams
       <br />
       do you want?
