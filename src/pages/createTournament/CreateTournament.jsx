@@ -17,10 +17,20 @@ const CreateTournament = () => {
     teams: Array(16).fill("", 0),
     tournamentName: "",
     isFormValid: false,
+    isFormEmpty: true,
   });
 
-  const validateForm = () => {
-    const { tournamentName, teams, numberOfTeams } = state;
+  const checkFormEmpty = (formState = state) => {
+    const { tournamentName, teams, numberOfTeams } = formState;
+    console.log(tournamentName?.length, !!tournamentName?.length);
+    return !!(
+      !tournamentName?.length &&
+      !teams.slice(0, numberOfTeams).filter((team) => team?.length).length
+    );
+  };
+
+  const validateForm = (formState = state) => {
+    const { tournamentName, teams, numberOfTeams } = formState;
     return !!(
       tournamentName?.length &&
       teams.slice(0, numberOfTeams).filter((team) => team?.length).length
@@ -28,20 +38,30 @@ const CreateTournament = () => {
   };
 
   const onTeamsCountChange = (newValue) => {
-    const isFormValid = validateForm();
-    setState({ ...state, numberOfTeams: newValue, isFormValid });
+    const newFormState = { ...state, numberOfTeams: newValue };
+    const isFormValid = validateForm(newFormState);
+    const isFormEmpty = checkFormEmpty(newFormState);
+
+    setState({ ...newFormState, isFormValid, isFormEmpty });
   };
 
   const onTeamNameChange = (index, newName) => {
     const teams = state.teams;
     teams.splice(index, 1, newName);
-    const isFormValid = validateForm();
-    setState({ ...state, teams, isFormValid });
+
+    const newFormState = { ...state, teams };
+    const isFormValid = validateForm(newFormState);
+    const isFormEmpty = checkFormEmpty(newFormState);
+
+    setState({ ...newFormState, isFormValid, isFormEmpty });
   };
 
   const onTournamentNameChange = (tournamentName) => {
-    const isFormValid = validateForm();
-    setState({ ...state, tournamentName, isFormValid });
+    const newFormState = { ...state, tournamentName };
+    const isFormValid = validateForm(newFormState);
+    const isFormEmpty = checkFormEmpty(newFormState);
+
+    setState({ ...newFormState, isFormValid, isFormEmpty });
   };
 
   const onCreateTournament = (event) => {
@@ -52,6 +72,16 @@ const CreateTournament = () => {
         teams: state.teams.slice(0, state.numberOfTeams),
       })
     );
+  };
+
+  const onResetClick = (event) => {
+    event.preventDefault();
+    setState({
+      ...state,
+      teams: Array(16).fill("", 0),
+      tournamentName: "",
+      isFormValid: false,
+    });
   };
 
   return (
@@ -72,6 +102,8 @@ const CreateTournament = () => {
           onTournamentNameChange={onTournamentNameChange}
           onCreateTournament={onCreateTournament}
           isGenerationEnable={state.isFormValid}
+          onResetClick={onResetClick}
+          isFormEmpty={state.isFormEmpty}
         />
       </form>
     </section>
