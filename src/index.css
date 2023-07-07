@@ -11,3 +11,14 @@
   font-family: 'Goldman', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 12pt;
 }
+
+button {
+  padding: 5px;
+  box-shadow: 1px 1px black;
+  background-color: #eeeeee;
+}
+
+button:hover {
+  box-shadow: none;
+  background-color: #cccccc;
+}
