@@ -22,7 +22,6 @@ const CreateTournament = () => {
 
   const checkFormEmpty = (formState = state) => {
     const { tournamentName, teams, numberOfTeams } = formState;
-    console.log(tournamentName?.length, !!tournamentName?.length);
     return !!(
       !tournamentName?.length &&
       !teams.slice(0, numberOfTeams).filter((team) => team?.length).length
@@ -74,13 +73,13 @@ const CreateTournament = () => {
     );
   };
 
-  const onResetClick = (event) => {
-    event.preventDefault();
+  const onResetClick = () => {
     setState({
       ...state,
       teams: Array(16).fill("", 0),
       tournamentName: "",
       isFormValid: false,
+      isFormEmpty: true,
     });
   };
 
@@ -102,7 +101,7 @@ const CreateTournament = () => {
           onTournamentNameChange={onTournamentNameChange}
           onCreateTournament={onCreateTournament}
           isGenerationEnable={state.isFormValid}
-          onResetClick={onResetClick}
+          onResetClickProp={onResetClick}
           isFormEmpty={state.isFormEmpty}
         />
       </form>

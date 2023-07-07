@@ -1,14 +1,34 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import Modal from "../../components/Modal/Modal";
 
 const TournamentSection = (props) => {
   const {
     tournamentName,
     onTournamentNameChange,
     onCreateTournament,
-    onResetClick,
+    onResetClickProp,
     isGenerationEnable,
     isFormEmpty,
   } = props;
+
+  const [state, setState] = useState({ isModalOpen: false });
+
+  const onResetClick = (event) => {
+    event.preventDefault();
+    setState({ isModalOpen: true });
+  };
+
+  const cancelReset = (event) => {
+    event.preventDefault();
+    setState({ isModalOpen: false });
+  };
+
+  const validateReset = (event) => {
+    event.preventDefault();
+    onResetClickProp();
+    setState({ isModalOpen: false });
+  };
 
   return (
     <div className="tournamentSection">
@@ -25,6 +45,15 @@ const TournamentSection = (props) => {
       <button onClick={(event) => onResetClick(event)} disabled={isFormEmpty}>
         Reset
       </button>
+
+      {state.isModalOpen && (
+        <Modal
+          title="Reset validation"
+          text="Are you sure you want to reset all values?"
+          onValidate={validateReset}
+          onCancel={cancelReset}
+        />
+      )}
     </div>
   );
 };
@@ -33,7 +62,7 @@ TournamentSection.propTypes = {
   tournamentName: PropTypes.string.isRequired,
   onTournamentNameChange: PropTypes.func.isRequired,
   onCreateTournament: PropTypes.func.isRequired,
-  onResetClick: PropTypes.func.isRequired,
+  onResetClickProp: PropTypes.func.isRequired,
   isGenerationEnable: PropTypes.bool.isRequired,
   isFormEmpty: PropTypes.bool.isRequired,
 };
