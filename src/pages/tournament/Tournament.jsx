@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
-
 const Tournament = () => {
-  const teams = useSelector((state) => state.tournament.teams);
+  const teams = ["test"];
   return <div className="tournament">tournament {teams}</div>;
 };
 

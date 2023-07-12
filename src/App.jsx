@@ -1,13 +1,9 @@
 import { Header } from "./pages";
 import "./App.css";
 import { Outlet, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 function App() {
-  const tournamentName = useSelector((state) => {
-    console.log(state, state.tournament, state.tournament.name);
-    return state.tournament.name;
-  });
+  const tournamentName = "Tournament";
   const location = useLocation();
   console.log(location);
   console.log(tournamentName);
