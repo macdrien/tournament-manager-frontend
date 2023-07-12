@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <CreateTournament />,
       },
       {
-        path: "tournament/:tournamentName",
+        path: "tournament",
         element: <Tournament />,
       },
     ],

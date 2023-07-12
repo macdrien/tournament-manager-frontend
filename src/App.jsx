@@ -5,8 +5,6 @@ import { Outlet, useLocation } from "react-router-dom";
 function App() {
   const tournamentName = "Tournament";
   const location = useLocation();
-  console.log(location);
-  console.log(tournamentName);
 
   const pageTitle = () => {
     if (location.pathname.startsWith("/tournament")) {

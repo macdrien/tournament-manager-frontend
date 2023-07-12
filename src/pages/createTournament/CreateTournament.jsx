@@ -63,7 +63,7 @@ const CreateTournament = () => {
 
   const onCreateTournament = (event) => {
     event.preventDefault();
-    navigate(`/tournament/${state.tournamentName}`);
+    navigate("/tournament");
   };
 
   const onResetClick = () => {
