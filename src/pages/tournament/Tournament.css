@@ -137,4 +137,19 @@
 .nextMatch {
   display: flex;
   flex-direction: column;
+  gap: 2em;
+}
+
+.nextMatchTeam {
+  font-size: 2em;
+}
+
+.nextMatchVs {
+  font-size: 1.5em;
+}
+
+.nextMatchScoreInput {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 32px;
 }
