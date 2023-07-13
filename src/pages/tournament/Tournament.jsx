@@ -37,6 +37,15 @@ const Tournament = () => {
     }
 
     brackets.push(round0);
+
+    for (let counter = tournament.teams.length / 2; counter > 1; counter /= 2) {
+      const round = [];
+      for (let bracket = 0; bracket < counter / 2; bracket++) {
+        round.push({ teams: [], result: [] });
+      }
+      brackets.push(round);
+    }
+
     setState({ brackets });
   }, []);
 
