@@ -59,7 +59,7 @@
 }
 
 .match {
-  background-color: #afafaf;
+  border: 2px solid black;
   border-radius: 5px;
   padding: 8px;
   display: flex;
@@ -77,24 +77,28 @@
 }
 
 .vs {
+  background-color: white;
   position: absolute;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
-  box-shadow: 1px 1px black;
   border-radius: 50%;
-
+  border: 2px solid black;
+  padding: 5px;
   right: calc(0px - 16px);
   width: 32px;
   height: 32px;
-
-  border: none;
 }
 
 .vs:not(:disabled):hover {
-  background-color: darkgray;
+  background-color: white;
+}
+
+.vs:disabled,
+.vs:disabled:hover {
+  background-color: white;
+  color: lightgrey;
 }
 
 .connectors {
