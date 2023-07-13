@@ -1,6 +1,14 @@
+import PropTypes from "prop-types";
+
 const Connector = function (props) {
   const { style } = props;
   return <div className="connector" style={style}></div>;
+};
+
+Connector.propTypes = {
+  style: PropTypes.shape({
+    height: PropTypes.string,
+  }),
 };
 
 const Connectors = function (props) {
@@ -20,6 +28,12 @@ const Connectors = function (props) {
       {connectors}
     </div>
   );
+};
+
+Connectors.propTypes = {
+  roundSize: PropTypes.number,
+  round: PropTypes.number,
+  gap: PropTypes.string,
 };
 
 export default Connectors;

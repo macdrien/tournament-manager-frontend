@@ -18,7 +18,10 @@ const Match = function (props) {
 };
 
 Match.propTypes = {
-  teams: PropTypes.arrayOf(PropTypes.string),
+  match: PropTypes.shape({
+    teams: PropTypes.arrayOf(PropTypes.string),
+    result: PropTypes.arrayOf(PropTypes.number),
+  }),
 };
 
 export default Match;

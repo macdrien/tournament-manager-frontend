@@ -8,7 +8,7 @@ const Brackets = (props) => {
   if (brackets?.length) {
     const height =
       (64 + 16) * brackets[0].length + 16 * (brackets[0].length - 1);
-    console.log(height);
+
     return (
       <div className="brackets">
         {brackets.map((round, roundIndex) => {

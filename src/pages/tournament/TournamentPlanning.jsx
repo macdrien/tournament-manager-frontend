@@ -4,7 +4,7 @@ import NextMatch from "./NextMatch";
 
 const TournamentPlanning = (props) => {
   const { brackets } = props;
-  console.log(brackets);
+
   return (
     <div className="tournamentPlanning">
       <Brackets brackets={brackets} />

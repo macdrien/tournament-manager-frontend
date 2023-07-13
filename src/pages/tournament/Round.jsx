@@ -14,6 +14,7 @@ const Round = (props) => {
 
 Round.propTypes = {
   round: PropTypes.arrayOf(PropTypes.object),
+  gap: PropTypes.string,
 };
 
 export default Round;
