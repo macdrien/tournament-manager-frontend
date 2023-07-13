@@ -76,6 +76,12 @@
   margin-bottom: 0;
 }
 
+.matchSeparator {
+  width: 134px;
+  height: 0;
+  border: 1px solid black;
+}
+
 .vs {
   background-color: white;
   position: absolute;

@@ -8,6 +8,7 @@ const Match = function (props) {
     <>
       <div className="match">
         <div>{teams[0]}</div>
+        <div className="matchSeparator"></div>
         <button className="vs" disabled={!(teams[0] && teams[1])}>
           VS
         </button>
