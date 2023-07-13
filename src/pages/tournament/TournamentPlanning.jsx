@@ -8,6 +8,7 @@ const TournamentPlanning = (props) => {
   return (
     <div className="tournamentPlanning">
       <Brackets brackets={brackets} />
+      <div className="planningSeparator"></div>
       <NextMatch teams={["tlse", "albi"]} />
     </div>
   );
