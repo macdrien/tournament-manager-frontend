@@ -1,14 +1,26 @@
 import { useState } from "react";
+import { Form, redirect } from "react-router-dom";
 
 import TeamsCountSelector from "./TeamCountSelector";
 import TeamsNames from "./TeamsNames";
 import TournamentSection from "./TournamentSection";
 
 import "./CreateTournament.css";
-import { useNavigate } from "react-router-dom";
+
+const actionCreate = async ({ request, _params }) => {
+  const formData = await request.formData();
+  let tournament = Object.fromEntries(formData);
+  tournament.teams = Object.entries(tournament)
+    .filter(([name, _value]) => name.startsWith("teams["))
+    .map(([name, value]) => {
+      delete tournament[name];
+      return value;
+    });
+  tournament = encodeURI(JSON.stringify(tournament));
+  return redirect(`/tournament?tournament=${tournament}`);
+};
 
 const CreateTournament = () => {
-  const navigate = useNavigate();
   const [state, setState] = useState({
     options: [2, 4, 8, 16],
     numberOfTeams: 4,
@@ -61,11 +73,6 @@ const CreateTournament = () => {
     setState({ ...newFormState, isFormValid, isFormEmpty });
   };
 
-  const onCreateTournament = (event) => {
-    event.preventDefault();
-    navigate("/tournament");
-  };
-
   const onResetClick = () => {
     setState({
       ...state,
@@ -78,7 +85,7 @@ const CreateTournament = () => {
 
   return (
     <section className="createTournament">
-      <form className="tournamentCreation">
+      <Form className="tournamentCreation" method="post">
         <TeamsCountSelector
           options={state.options}
           checkedValue={state.numberOfTeams}
@@ -92,14 +99,15 @@ const CreateTournament = () => {
         <TournamentSection
           tournamentName={state.tournamentName}
           onTournamentNameChange={onTournamentNameChange}
-          onCreateTournament={onCreateTournament}
           isGenerationEnable={state.isFormValid}
           onResetClickProp={onResetClick}
           isFormEmpty={state.isFormEmpty}
         />
-      </form>
+      </Form>
     </section>
   );
 };
+
+export { actionCreate };
 
 export default CreateTournament;

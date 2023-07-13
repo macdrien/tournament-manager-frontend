@@ -6,7 +6,6 @@ const TournamentSection = (props) => {
   const {
     tournamentName,
     onTournamentNameChange,
-    onCreateTournament,
     onResetClickProp,
     isGenerationEnable,
     isFormEmpty,
@@ -33,14 +32,13 @@ const TournamentSection = (props) => {
   return (
     <div className="tournamentSection">
       <input
+        name="name"
         type="text"
         value={tournamentName}
         onChange={(event) => onTournamentNameChange(event.target.value)}
         placeholder="Tournament name"
       />
-      <button onClick={onCreateTournament} disabled={!isGenerationEnable}>
-        Generate
-      </button>
+      <button disabled={!isGenerationEnable}>Generate</button>
 
       <button onClick={(event) => onResetClick(event)} disabled={isFormEmpty}>
         Reset
@@ -61,7 +59,6 @@ const TournamentSection = (props) => {
 TournamentSection.propTypes = {
   tournamentName: PropTypes.string.isRequired,
   onTournamentNameChange: PropTypes.func.isRequired,
-  onCreateTournament: PropTypes.func.isRequired,
   onResetClickProp: PropTypes.func.isRequired,
   isGenerationEnable: PropTypes.bool.isRequired,
   isFormEmpty: PropTypes.bool.isRequired,
