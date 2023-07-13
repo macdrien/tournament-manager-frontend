@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Brackets from "./Brackets";
+import Brackets from "./brackets/Brackets";
 import NextMatch from "./NextMatch";
 
 const TournamentPlanning = (props) => {
