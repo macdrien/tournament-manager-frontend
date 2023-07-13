@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 
 const Match = function (props) {
-  const { teams } = props;
+  const { match } = props;
+  const { teams } = match;
+
   return (
     <>
       <div className="match">

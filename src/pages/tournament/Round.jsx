@@ -6,7 +6,7 @@ const Round = (props) => {
   return (
     <div className="pool" style={{ gap: gap }}>
       {round.map((match, matchIndex) => (
-        <Match teams={match} key={matchIndex} />
+        <Match match={match} key={matchIndex} />
       ))}
     </div>
   );
