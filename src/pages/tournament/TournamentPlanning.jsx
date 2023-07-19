@@ -3,17 +3,15 @@ import Brackets from "./brackets/Brackets";
 import NextMatch from "./NextMatch";
 
 const TournamentPlanning = (props) => {
-  const { brackets } = props;
-  console.log(brackets);
+  const { brackets, onScoreChange } = props;
 
   const findNextMatch = () => {
-    let nextMatch;
-    for (const round of brackets) {
-      console.log("round", round);
-      for (const match of round) {
-        console.log("match", match);
+    for (let counter = 0; counter < brackets.length; counter++) {
+      const round = brackets[counter];
+      for (let roundCounter = 0; roundCounter < round.length; roundCounter++) {
+        const match = round[roundCounter];
         if (!match?.result?.filter((score) => !!score)?.length) {
-          return match;
+          return { match };
         }
       }
     }
@@ -24,7 +22,7 @@ const TournamentPlanning = (props) => {
       <div className="tournamentPlanning">
         <Brackets brackets={brackets} />
         <div className="planningSeparator"></div>
-        <NextMatch match={findNextMatch()} />
+        <NextMatch nextMatch={findNextMatch()} onScoreChange={onScoreChange} />
       </div>
     )
   );
@@ -39,6 +37,7 @@ TournamentPlanning.propTypes = {
       })
     )
   ),
+  onScoreChange: PropTypes.func.isRequired,
 };
 
 export default TournamentPlanning;

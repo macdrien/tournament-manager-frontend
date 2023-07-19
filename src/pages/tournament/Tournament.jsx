@@ -23,7 +23,7 @@ const Tournament = () => {
     const round0 = [];
 
     while (teamsBuffer.length) {
-      const match = { teams: [] };
+      const match = { teams: [], result: [0, 0] };
 
       const firstIndex = random(teamsBuffer.length);
       match.teams.push(teamsBuffer[firstIndex]);
@@ -41,7 +41,7 @@ const Tournament = () => {
     for (let counter = tournament.teams.length / 2; counter > 1; counter /= 2) {
       const round = [];
       for (let bracket = 0; bracket < counter / 2; bracket++) {
-        round.push({ teams: [], result: [] });
+        round.push({ teams: [], result: [0, 0] });
       }
       brackets.push(round);
     }

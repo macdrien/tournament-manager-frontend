@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
 const NextMatch = (props) => {
-  const { match } = props;
-  const { teams } = match;
+  const { nextMatch, onScoreChange } = props;
+  const { teams } = nextMatch.match;
 
   return (
     <div className="nextMatch">
@@ -10,13 +10,15 @@ const NextMatch = (props) => {
       <input
         type="number"
         className="nextMatchScoreInput"
-        value={match.result && match.result[0] ? match.result[0] : null}
+        value={nextMatch.match.result[0]}
+        onChange={(event) => onScoreChange(event.target.valueAsNumber, 0)}
       />
       <div className="nextMatchVs">VS</div>
       <input
         type="number"
         className="nextMatchScoreInput"
-        value={match.result && match.result[0] ? match.result[1] : null}
+        value={nextMatch.match.result[1]}
+        onChange={(event) => onScoreChange(event.target.valueAsNumber, 1)}
       />
       <div className="nextMatchTeam">{teams[1]}</div>
     </div>
@@ -24,10 +26,13 @@ const NextMatch = (props) => {
 };
 
 NextMatch.propTypes = {
-  match: PropTypes.shape({
-    teams: PropTypes.arrayOf(PropTypes.string),
-    result: PropTypes.arrayOf(PropTypes.number),
+  nextMatch: PropTypes.shape({
+    match: PropTypes.shape({
+      teams: PropTypes.arrayOf(PropTypes.string),
+      result: PropTypes.arrayOf(PropTypes.number),
+    }),
   }),
+  onScoreChange: PropTypes.func.isRequired,
 };
 
 export default NextMatch;

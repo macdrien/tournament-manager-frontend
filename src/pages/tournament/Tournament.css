@@ -140,16 +140,24 @@
   gap: 2em;
 }
 
-.nextMatchTeam {
-  font-size: 2em;
+.nextMatchTeam, .nextMatchVs {
+  font-size: 1.5em;
 }
 
-.nextMatchVs {
-  font-size: 1.5em;
+.nextMatchScoreInput {
+  font-size: 2em;
 }
 
 .nextMatchScoreInput {
   border: none;
   border-bottom: 1px solid black;
   width: 32px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  text-align: center;
 }
