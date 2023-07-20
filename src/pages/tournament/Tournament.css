@@ -82,6 +82,13 @@
   border: 1px solid black;
 }
 
+.teamName {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .vs {
   background-color: white;
   position: absolute;

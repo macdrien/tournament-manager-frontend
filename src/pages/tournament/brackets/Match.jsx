@@ -7,12 +7,12 @@ const Match = function (props) {
   return (
     <>
       <div className="match">
-        <div>{teams[0]}</div>
+        <div className="teamName">{teams[0]}</div>
         <div className="matchSeparator"></div>
         <button className="vs" disabled={!(teams[0] && teams[1])}>
           VS
         </button>
-        <div>{teams[1]}</div>
+        <div className="teamName">{teams[1]}</div>
       </div>
     </>
   );
