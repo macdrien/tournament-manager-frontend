@@ -82,11 +82,20 @@
   border: 1px solid black;
 }
 
-.teamName {
+.teamSection {
   height: 50%;
+  width: 90%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-right: 10%;
+}
+
+.teamSection > .teamScore {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
 }
 
 .vs {
