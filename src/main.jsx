@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import CreateTournament, {
@@ -8,7 +8,7 @@ import CreateTournament, {
 } from "./pages/createTournament/CreateTournament";
 import Tournament, { loaderTournament } from "./pages/tournament/Tournament";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
