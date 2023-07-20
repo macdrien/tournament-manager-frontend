@@ -8,7 +8,7 @@ const NextMatch = (props) => {
   const [state, setState] = useState(null);
 
   const calcResultSize = result => {
-    return (String(result).length * 20) + 'px'
+    return (String(result).length * 25) + 'px'
   };
 
   useEffect(() => {
