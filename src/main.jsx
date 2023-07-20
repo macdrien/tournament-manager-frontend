@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, /*RouterProvider, */HashRouter as Router } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import CreateTournament, {
@@ -29,6 +29,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Router router={router} />
   </React.StrictMode>
 );
