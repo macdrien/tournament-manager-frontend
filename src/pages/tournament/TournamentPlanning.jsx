@@ -10,7 +10,7 @@ const TournamentPlanning = (props) => {
       const round = brackets[counter];
       for (let roundCounter = 0; roundCounter < round.length; roundCounter++) {
         const match = round[roundCounter];
-        if (!match?.result?.filter((score) => !!score)?.length) {
+        if (!match?.matchDone) {
           return { match };
         }
       }
@@ -34,6 +34,7 @@ TournamentPlanning.propTypes = {
       PropTypes.shape({
         teams: PropTypes.arrayOf(PropTypes.string),
         result: PropTypes.arrayOf(PropTypes.number),
+        matchDone: PropTypes.bool.isRequired,
       })
     )
   ),
