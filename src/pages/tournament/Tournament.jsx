@@ -56,7 +56,10 @@ const Tournament = () => {
 
     const biggerScoreIndex = match.result[0] > match.result[1] ? 0 : 1;
     if (round < brackets.length - 1) {
-      brackets[round + 1][matchIndex % 2].teams[biggerScoreIndex] = match.teams[biggerScoreIndex];
+      const newPosition = matchIndex / 2;
+      const newMatchIndex = Number.parseInt(newPosition);
+      const newTeamIndex = Number.isInteger(newPosition) ? 0 : 1;
+      brackets[round + 1][newMatchIndex].teams[newTeamIndex] = match.teams[biggerScoreIndex];
     }
 
     console.log(round, matchIndex, match, brackets);
