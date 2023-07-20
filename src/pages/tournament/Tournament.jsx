@@ -49,10 +49,24 @@ const Tournament = () => {
     setState({ brackets });
   }, []);
 
+  const onMatchDone = (round, matchIndex, match) => {
+    const brackets = cloneDeep(state.brackets);
+    match.matchDone = true;
+    brackets[round][matchIndex] = match;
+
+    const biggerScoreIndex = match.result[0] > match.result[1] ? 0 : 1;
+    if (round < brackets.length - 1) {
+      brackets[round + 1][matchIndex % 2].teams[biggerScoreIndex] = match.teams[biggerScoreIndex];
+    }
+
+    console.log(round, matchIndex, match, brackets);
+    setState({brackets});
+  }
+
   return (
     <div className="tournament">
       <TournamentHeader name={tournament.name} />
-      <TournamentPlanning brackets={state.brackets} />
+      <TournamentPlanning brackets={state.brackets} onMatchDone={onMatchDone} />
     </div>
   );
 };

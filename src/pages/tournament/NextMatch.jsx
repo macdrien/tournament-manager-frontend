@@ -2,14 +2,15 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 const NextMatch = (props) => {
-  const { nextMatch } = props;
+  const { nextMatch, onMatchDone } = props;
 
   const [match, setMatch] = useState(null);
 
   useEffect(() => {
-    console.log(nextMatch);
-    setMatch(nextMatch.match);
-  }, []);
+    if (nextMatch) {
+      setMatch(nextMatch.match);
+    }
+  }, [nextMatch]);
 
   const onScoreChange = (value, teamIndex) => {
     const result = match.result;
@@ -34,17 +35,21 @@ const NextMatch = (props) => {
         onChange={event => onScoreChange(event.target.valueAsNumber, 1)}
       />
       <div className="nextMatchTeam">{match.teams[1]}</div>
+      <button onClick={event => onMatchDone(nextMatch.round, nextMatch.matchIndex, match)}>Terminer</button>
     </div>
   );
 };
 
 NextMatch.propTypes = {
   nextMatch: PropTypes.shape({
+    round: PropTypes.number,
+    matchIndex: PropTypes.number,
     match: PropTypes.shape({
       teams: PropTypes.arrayOf(PropTypes.string),
       result: PropTypes.arrayOf(PropTypes.number),
     }),
   }),
+  onMatchDone: PropTypes.func.isRequired,
 };
 
 export default NextMatch;

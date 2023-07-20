@@ -1,17 +1,24 @@
 import PropTypes from "prop-types";
 import Brackets from "./brackets/Brackets";
 import NextMatch from "./NextMatch";
+import { useEffect, useState } from "react";
 
 const TournamentPlanning = (props) => {
-  const { brackets, onScoreChange } = props;
+  const { brackets, onMatchDone } = props;
+
+  const [nextMatch, setNextMatch] = useState(null);
+
+  useEffect(() => {
+    setNextMatch(findNextMatch());
+  }, [brackets]);
 
   const findNextMatch = () => {
-    for (let counter = 0; counter < brackets.length; counter++) {
-      const round = brackets[counter];
-      for (let roundCounter = 0; roundCounter < round.length; roundCounter++) {
-        const match = round[roundCounter];
+    for (let roundCounter = 0; roundCounter < brackets.length; roundCounter++) {
+      const round = brackets[roundCounter];
+      for (let matchCounter = 0; matchCounter < round.length; matchCounter++) {
+        const match = round[matchCounter];
         if (!match?.matchDone) {
-          return { match };
+          return { round: roundCounter, matchIndex: matchCounter, match };
         }
       }
     }
@@ -22,7 +29,7 @@ const TournamentPlanning = (props) => {
       <div className="tournamentPlanning">
         <Brackets brackets={brackets} />
         <div className="planningSeparator"></div>
-        <NextMatch nextMatch={findNextMatch()} />
+        <NextMatch nextMatch={nextMatch} onMatchDone={onMatchDone} />
       </div>
     )
   );
@@ -38,7 +45,7 @@ TournamentPlanning.propTypes = {
       })
     )
   ),
-  onScoreChange: PropTypes.func.isRequired,
+  onMatchDone: PropTypes.func.isRequired,
 };
 
 export default TournamentPlanning;
