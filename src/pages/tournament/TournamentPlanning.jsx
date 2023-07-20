@@ -22,7 +22,7 @@ const TournamentPlanning = (props) => {
       <div className="tournamentPlanning">
         <Brackets brackets={brackets} />
         <div className="planningSeparator"></div>
-        <NextMatch nextMatch={findNextMatch()} onScoreChange={onScoreChange} />
+        <NextMatch nextMatch={findNextMatch()} />
       </div>
     )
   );
