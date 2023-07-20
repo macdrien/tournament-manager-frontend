@@ -62,7 +62,6 @@ const Tournament = () => {
       brackets[round + 1][newMatchIndex].teams[newTeamIndex] = match.teams[biggerScoreIndex];
     }
 
-    console.log(round, matchIndex, match, brackets);
     setState({brackets});
   }
 

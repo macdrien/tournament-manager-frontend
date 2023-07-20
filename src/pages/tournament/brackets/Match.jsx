@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 
 const Match = function (props) {
-  const { match } = props;
+  const { match, isNextMatch } = props;
   const { teams } = match;
 
   return (
     <>
-      <div className="match">
+      <div className={`match ${isNextMatch ? 'isNextMatch' : ''}`}>
         <div className="teamSection">
           <div>{teams[0]}</div>
           {match.matchDone ?
@@ -40,6 +40,7 @@ Match.propTypes = {
     result: PropTypes.arrayOf(PropTypes.number),
     matchDone: PropTypes.bool,
   }),
+  isNextMatch: PropTypes.bool
 };
 
 export default Match;

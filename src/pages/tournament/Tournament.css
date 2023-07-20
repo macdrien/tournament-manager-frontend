@@ -72,6 +72,10 @@
   height: 64px;
 }
 
+.match.isNextMatch {
+  border-width: 4px;
+}
+
 .match:last-child {
   margin-bottom: 0;
 }

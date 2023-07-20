@@ -3,7 +3,7 @@ import Round from "./Round";
 import Connectors from "./Connectors";
 
 const Brackets = (props) => {
-  const { brackets } = props;
+  const { brackets, nextMatch } = props;
 
   if (brackets?.length) {
     const height =
@@ -28,7 +28,7 @@ const Brackets = (props) => {
               key={"roundIndex" + roundIndex}
               style={{ height: height }}
             >
-              <Round round={round} gap={matchGap} />
+              <Round round={round} gap={matchGap} nextMatch={nextMatch} />
               {roundIndex !== brackets.length - 1 && (
                 <Connectors
                   roundSize={round.length}
@@ -55,6 +55,14 @@ Brackets.propTypes = {
       })
     )
   ),
+  nextMatch: PropTypes.shape({
+    round: PropTypes.number,
+    matchIndex: PropTypes.number,
+    match: PropTypes.shape({
+      teams: PropTypes.arrayOf(PropTypes.string),
+      result: PropTypes.arrayOf(PropTypes.number),
+    }),
+  }),
 };
 
 export default Brackets;
