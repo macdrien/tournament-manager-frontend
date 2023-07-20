@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, /*RouterProvider, */HashRouter as Router } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import CreateTournament, {
@@ -8,7 +8,7 @@ import CreateTournament, {
 } from "./pages/createTournament/CreateTournament";
 import Tournament, { loaderTournament } from "./pages/tournament/Tournament";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
@@ -29,6 +29,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
