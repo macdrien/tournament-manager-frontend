@@ -158,7 +158,8 @@
 .nextMatchScoreInput {
   border: none;
   border-bottom: 1px solid black;
-  width: 32px;
+  max-width: 128px;
+  min-width: 32px;
 }
 
 input[type=number]::-webkit-inner-spin-button {
@@ -167,4 +168,8 @@ input[type=number]::-webkit-inner-spin-button {
 
 input[type=number] {
   text-align: center;
+}
+
+.winningTeam {
+  text-decoration: underline;
 }

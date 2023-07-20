@@ -1,41 +1,60 @@
+import { cloneDeep } from "lodash";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 const NextMatch = (props) => {
   const { nextMatch, onMatchDone } = props;
 
-  const [match, setMatch] = useState(null);
+  const [state, setState] = useState(null);
+
+  const calcResultSize = result => {
+    return (String(result).length * 20) + 'px'
+  };
 
   useEffect(() => {
     if (nextMatch) {
-      setMatch(nextMatch.match);
+      setState({
+        match: nextMatch.match,
+        resultSize: [calcResultSize(nextMatch.match.result[0]), calcResultSize(nextMatch.match.result[1])]
+      });
     }
   }, [nextMatch]);
 
-  const onScoreChange = (value, teamIndex) => {
-    const result = match.result;
-    result[teamIndex] = value;
-    setMatch({...match, result});
+  const onScoreChange = (event, teamIndex) => {
+    const newValue = Number.parseInt(event.target.value);
+    event.target.value = 0; // To avoid useless zeros
+
+    const match = state.match;
+    match.result[teamIndex] = newValue;
+
+    const resultSize = cloneDeep(state.resultSize);
+    resultSize[teamIndex] = calcResultSize(match.result[teamIndex]);
+
+    setState({...state, match, resultSize});
   }
 
-  return match && (
+  return state?.match && (
     <div className="nextMatch">
-      <div className="nextMatchTeam">{match.teams[0]}</div>
+      <div className={`nextMatchTeam ${state.match.result[0] > state.match.result[1] ? 'winningTeam' : '' }`}>{state.match.teams[0]}</div>
       <input
         type="number"
         className="nextMatchScoreInput"
-        value={match.result[0]}
-        onChange={event => onScoreChange(event.target.valueAsNumber, 0)}
+        value={state.match.result[0] !== 0 ? state.match.result[0] : ''}
+        placeholder="0"
+        onChange={event => onScoreChange(event, 0)}
+        style={{width: state.resultSize[0]}}
       />
       <div className="nextMatchVs">VS</div>
       <input
         type="number"
         className="nextMatchScoreInput"
-        value={match.result[1]}
-        onChange={event => onScoreChange(event.target.valueAsNumber, 1)}
+        value={state.match.result[1] !== 0 ? state.match.result[1] : ''}
+        placeholder="0"
+        onChange={event => onScoreChange(event, 1)}
+        style={{width: state.resultSize[1]}}
       />
-      <div className="nextMatchTeam">{match.teams[1]}</div>
-      <button onClick={event => onMatchDone(nextMatch.round, nextMatch.matchIndex, match)}>Terminer</button>
+      <div className={`nextMatchTeam ${state.match.result[1] > state.match.result[0] ? 'winningTeam' : '' }`}>{state.match.teams[1]}</div>
+      <button onClick={_event => onMatchDone(nextMatch.round, nextMatch.matchIndex, state.match)}>Terminer</button>
     </div>
   );
 };
