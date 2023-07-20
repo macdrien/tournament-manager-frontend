@@ -18,4 +18,4 @@ jobs:
     - name: Build project
       run: npm run build
     - name: Deploy to github pages
-      run: gh-pages -d build
+      run: npm run deploy
