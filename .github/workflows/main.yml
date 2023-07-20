@@ -1,0 +1,21 @@
+name: Deploy app to Github Pages
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  deploy-project:
+    name: Build and deploy the app
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    - name: Install dependencies
+      run: npm install
+    - name: Build project
+      run: npm build
+    - name: Deploy to github pages
+      run: gh-pages -d build
