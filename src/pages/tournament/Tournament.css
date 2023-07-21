@@ -186,3 +186,13 @@ input[type=number] {
 .winningTeam {
   text-decoration: underline;
 }
+
+.winner {
+  margin-left: 1em;
+  font-size: 1.2em;
+}
+
+.winner > span {
+  font-size: 1.5em;
+  text-decoration: underline;
+}

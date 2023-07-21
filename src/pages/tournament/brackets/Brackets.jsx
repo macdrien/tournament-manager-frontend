@@ -5,6 +5,11 @@ import Connectors from "./Connectors";
 const Brackets = (props) => {
   const { brackets, nextMatch } = props;
 
+  const winnerName = () => {
+    const lastMatch = brackets[brackets.length - 1][0];
+    return lastMatch.teams[lastMatch.result[0] > lastMatch.result[1] ? 0 : 1];
+  }
+
   if (brackets?.length) {
     const height =
       (64 + 16) * brackets[0].length + 16 * (brackets[0].length - 1);
@@ -39,6 +44,7 @@ const Brackets = (props) => {
             </div>
           );
         })}
+        {!nextMatch && <div className="winner">The winner is &#9819;<span>{winnerName()}</span>&#9819;</div>}
       </div>
     );
   } else {

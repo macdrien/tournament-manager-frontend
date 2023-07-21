@@ -29,8 +29,11 @@ const TournamentPlanning = (props) => {
     brackets.length && (
       <div className="tournamentPlanning">
         <Brackets brackets={brackets} nextMatch={nextMatch} />
+        {nextMatch && <>
         <div className="planningSeparator"></div>
-        <NextMatch nextMatch={nextMatch} onMatchDone={onMatchDone} />
+          <NextMatch nextMatch={nextMatch} onMatchDone={onMatchDone} />
+        </>
+          }
       </div>
     )
   );
