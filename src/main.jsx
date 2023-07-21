@@ -8,24 +8,29 @@ import CreateTournament, {
 } from "./pages/createTournament/CreateTournament";
 import Tournament, { loaderTournament } from "./pages/tournament/Tournament";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "create",
+          element: <CreateTournament />,
+          action: actionCreate,
+        },
+        {
+          path: "tournament",
+          element: <Tournament />,
+          loader: loaderTournament,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "create",
-        element: <CreateTournament />,
-        action: actionCreate,
-      },
-      {
-        path: "tournament",
-        element: <Tournament />,
-        loader: loaderTournament,
-      },
-    ],
-  },
-]);
+    basename: "/tournament-manager",
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
