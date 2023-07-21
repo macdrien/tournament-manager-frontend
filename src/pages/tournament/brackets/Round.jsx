@@ -3,12 +3,12 @@ import Match from "./Match";
 
 const Round = (props) => {
   const { round, gap, nextMatch } = props;
-  return round && nextMatch ? (
+
+  return round ? (
     <div className="pool" style={{ gap: gap }}>
       {round.map((match, matchIndex) => (
-        <Match match={match} key={matchIndex} isNextMatch={match.teams[0] === nextMatch.match.teams[0] && match.teams[1] === nextMatch.match.teams[1]}/>
-        )
-      )}
+        <Match match={match} key={matchIndex} isNextMatch={nextMatch && match.teams[0] === nextMatch.match.teams[0] && match.teams[1] === nextMatch.match.teams[1]}/>
+      ))}
     </div>
   ) : '';
 };

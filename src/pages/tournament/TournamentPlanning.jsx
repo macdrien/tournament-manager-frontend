@@ -22,6 +22,7 @@ const TournamentPlanning = (props) => {
         }
       }
     }
+    return null;
   };
 
   return (
