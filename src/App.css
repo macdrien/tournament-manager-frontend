@@ -53,22 +53,34 @@
 
 button {
   padding: 5px;
-  box-shadow: 1px 1px black;
+  box-shadow: 1px 1px var(--primary);
+  background-color: var(--alt);
+  color: var(--primary);
 }
 
 button:hover {
   box-shadow: none;
-  background-color: #cccccc;
+  background-color: var(--primary);
+  color: var(--alt);
 }
 
 button:disabled {
   box-shadow: none;
-}
-
-button:disabled:hover {
-  background-color: #eeeeee;
+  background-color: var(--alt);
+  color: var(--secondary);
 }
 
 .title {
   font-size: 1.1em;
+}
+
+input {
+    border: 1px solid var(--secondary);
+    padding: 2px;
+    background-color: inherit;
+    color: inherit;
+}
+
+input::placeholder {
+    color: var(--secondary);
 }
