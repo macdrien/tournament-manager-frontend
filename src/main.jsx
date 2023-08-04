@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import CreateTournament, {
@@ -12,6 +12,10 @@ const router = createHashRouter([
   {
     path: "/",
     element: <App />,
+    loader: async ({ request }) => {
+      const url = new URL(request.url);
+      return url.pathname === '/' ? redirect('/create') : request;
+    },
     children: [
       {
         path: "create",

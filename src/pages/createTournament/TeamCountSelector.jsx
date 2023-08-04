@@ -6,9 +6,9 @@ const TeamsCountSelector = (props) => {
 
     return <div className="teamsCountSection">
     <p className="title">
-      How many teams
+      Combien d'équipes
       <br />
-      do you want?
+      veux-tu?
     </p>
     <div className="teamsCountSelection">
       {options.map((option) => (

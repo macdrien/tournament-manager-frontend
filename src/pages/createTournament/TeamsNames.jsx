@@ -5,7 +5,7 @@ const TeamsNames = (props) => {
 
   return (
     <div className="teamsNames">
-      <p className="title">Teams names</p>
+      <p className="title">Noms</p>
       {teams.slice(0, teamsCount).map((team, index) => (
         <input
           key={index}
