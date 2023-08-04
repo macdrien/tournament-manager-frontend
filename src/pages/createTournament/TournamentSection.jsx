@@ -36,7 +36,7 @@ const TournamentSection = (props) => {
         type="text"
         value={tournamentName}
         onChange={(event) => onTournamentNameChange(event.target.value)}
-        placeholder="Tournament name"
+        placeholder="Nom du tournoi"
       />
       <button disabled={!isGenerationEnable}>Générer</button>
 
