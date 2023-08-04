@@ -1,9 +1,30 @@
+.app[data-theme='light'] {
+  --primary: #2b2d42ff;
+  --secondary: #8d99aeff;
+  --alt: #edf2f4ff;
+  --success: #9bc53dff;
+  --error: #d90429ff;
+}
+
+.app[data-theme='dark'] {
+  --alt: #2b2d42ff;
+  --secondary: #8d99aeff;
+  --primary: #edf2f4ff;
+  --success: #9bc53dff;
+  --error: #d90429ff;
+}
+
 .app {
     width: 100vw;
     height: 100vh;
     
     display: flex;
     flex-direction: column;
+
+    letter-spacing: 2px;
+
+    background-color: var(--alt);
+    color: var(--primary);
 }
 
 .content {
