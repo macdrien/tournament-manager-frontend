@@ -44,11 +44,11 @@ const Brackets = (props) => {
             </div>
           );
         })}
-        {!nextMatch && <div className="winner">The winner is &#9819;<span>{winnerName()}</span>&#9819;</div>}
+        {!nextMatch && <div className="winner">Le gagnant est &#9819;<span>{winnerName()}</span>&#9819; !!!</div>}
       </div>
     );
   } else {
-    return <div>No match right now</div>;
+    return <div>Pas de match en cours</div>;
   }
 };
 

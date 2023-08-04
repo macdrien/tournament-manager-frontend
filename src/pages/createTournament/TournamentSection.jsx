@@ -38,16 +38,16 @@ const TournamentSection = (props) => {
         onChange={(event) => onTournamentNameChange(event.target.value)}
         placeholder="Tournament name"
       />
-      <button disabled={!isGenerationEnable}>Generate</button>
+      <button disabled={!isGenerationEnable}>Générer</button>
 
       <button onClick={(event) => onResetClick(event)} disabled={isFormEmpty}>
-        Reset
+        Réinitialiser
       </button>
 
       {state.isModalOpen && (
         <Modal
-          title="Reset validation"
-          text="Are you sure you want to reset all values?"
+          title="Validation"
+          text="Es-tu sûr de vouloir supprimer tous ce que tu as saisis ?"
           onValidate={validateReset}
           onCancel={cancelReset}
         />
