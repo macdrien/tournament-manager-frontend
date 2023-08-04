@@ -13,7 +13,7 @@ const TeamsNames = (props) => {
           name={`teams[${index}]`}
           value={team}
           onChange={(event) => onChange(index, event.target.value)}
-          placeholder={["Team name", index + 1].join(" ")}
+          placeholder={["Equipe", index + 1].join(" ")}
         />
       ))}
     </div>
