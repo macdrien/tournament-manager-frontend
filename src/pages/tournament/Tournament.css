@@ -32,7 +32,7 @@
 }
 
 .planningSeparator {
-  border: 1px solid black;
+  border: 1px solid var(--primary);
   height: 90%;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .match {
-  border: 2px solid black;
+  border: 2px solid var(--primary);
   border-radius: 5px;
   padding: 8px;
   display: flex;
@@ -83,7 +83,7 @@
 .matchSeparator {
   width: 134px;
   height: 0;
-  border: 1px solid black;
+  border: 1px solid var(--primary);
 }
 
 .teamSection {
@@ -103,14 +103,14 @@
 }
 
 .vs {
-  background-color: white;
+  background-color: inherit;
   position: absolute;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 2px solid black;
+  border: 2px solid var(--primary);
   padding: 5px;
   right: calc(0px - 16px);
   width: 32px;
@@ -118,13 +118,14 @@
 }
 
 .vs:not(:disabled):hover {
-  background-color: white;
+  background-color: var(--primary);
+  color: var(--alt);
 }
 
 .vs:disabled,
 .vs:disabled:hover {
-  background-color: white;
-  color: lightgrey;
+  background-color: inherit;
+  color: var(--secondary);
 }
 
 .connectors {
@@ -137,7 +138,7 @@
 }
 
 .connector {
-  border: 1px solid black;
+  border: 1px solid var(--primary);
   border-left: none;
   width: 16px;
   border-top-right-radius: 8px;
@@ -151,7 +152,7 @@
   right: -16px;
   width: 16px;
   content: "";
-  border-top: 1px solid black;
+  border-top: 1px solid var(--primary);
 }
 
 .nextMatch {
@@ -170,7 +171,7 @@
 
 .nextMatchScoreInput {
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--primary);
   max-width: 128px;
   min-width: 32px;
 }
