@@ -71,6 +71,16 @@ button:disabled {
   color: var(--secondary);
 }
 
+button.success {
+  background-color: var(--success);
+  color: var(--alt);
+}
+
+button.error {
+  background-color: var(--error);
+  color: var(--alt);
+}
+
 .title {
   font-size: 1.1em;
 }
