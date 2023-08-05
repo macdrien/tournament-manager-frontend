@@ -19,6 +19,7 @@
   --secondary: #8d99aeff;
   --alt: #edf2f4ff;
   --success: #618B4A;
+  --warning: #E7700D;
   --error: #d90429ff;
 }
 
@@ -27,6 +28,7 @@
   --secondary: #8d99aeff;
   --primary: #edf2f4ff;
   --success: #7ac74f;
+  --warning: #F45D01;
   --error: #e9190f;
 }
 
@@ -86,6 +88,15 @@ button.error {
 
 button.error:hover {
   background-color: var(--error);
+  color: var(--alt);
+}
+
+button.warning {
+  color: var(--warning);
+}
+
+button.warning:hover {
+  background-color: var(--warning);
   color: var(--alt);
 }
 
