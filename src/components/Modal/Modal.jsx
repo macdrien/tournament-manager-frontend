@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import "./Modal.css";
 
 const Modal = (props) => {
@@ -34,17 +34,17 @@ const Modal = (props) => {
       {onValidate ? (
         <>
           <button
-            className="modalValidate"
+            className="modalValidate success"
             onClick={(event) => onValidate(event)}
           >
             {validateText}
           </button>
-          <button className="modalCancel" onClick={(event) => onCancel(event)}>
+          <button className="modalCancel error" onClick={(event) => onCancel(event)}>
             {cancelText}
           </button>
         </>
       ) : (
-        <button className="modalClose" onClick={(event) => onClose(event)}>
+        <button className="modalClose error" onClick={(event) => onClose(event)}>
           {closeText}
         </button>
       )}
