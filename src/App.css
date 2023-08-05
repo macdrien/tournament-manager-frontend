@@ -11,14 +11,14 @@
   font-family: "Goldman", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
     sans-serif;
   font-size: 12pt;
-  background-color: inherit;
+  background-color: transparent;
 }
 
 .app[data-theme='light'] {
   --primary: #2b2d42ff;
   --secondary: #8d99aeff;
   --alt: #edf2f4ff;
-  --success: #9bc53dff;
+  --success: #618B4A;
   --error: #d90429ff;
 }
 
@@ -26,8 +26,8 @@
   --alt: #2b2d42ff;
   --secondary: #8d99aeff;
   --primary: #edf2f4ff;
-  --success: #9bc53dff;
-  --error: #d90429ff;
+  --success: #7ac74f;
+  --error: #e9190f;
 }
 
 .app {
@@ -72,11 +72,19 @@ button:disabled {
 }
 
 button.success {
+  color: var(--success);
+}
+
+button.success:hover {
   background-color: var(--success);
   color: var(--alt);
 }
 
 button.error {
+  color: var(--error);
+}
+
+button.error:hover {
   background-color: var(--error);
   color: var(--alt);
 }
