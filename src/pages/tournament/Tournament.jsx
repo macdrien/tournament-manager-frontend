@@ -15,13 +15,14 @@ const loaderTournament = async ({ request }) => {
 
 const Tournament = () => {
   const { tournament } = useLoaderData();
-  const [state, setState] = useState({ brackets: [] });
+  const [state, setState] = useState({ brackets: [], teamsOpen: false, });
 
   useEffect(() => {
     const teamsBuffer = cloneDeep(tournament.teams);
     const brackets = [];
     const round0 = [];
 
+    // Duels selection
     while (teamsBuffer.length) {
       const match = { teams: [], result: [0, 0], matchDone: false };
 
@@ -65,10 +66,14 @@ const Tournament = () => {
     setState({brackets});
   }
 
+  const onTeamsDisplayClick = () => {
+    setState({ ...state, teamsOpen: !state.teamsOpen });
+  }
+
   return (
     <div className="tournament">
-      <TournamentHeader name={tournament.name} />
-      <TournamentPlanning brackets={state.brackets} onMatchDone={onMatchDone} />
+      <TournamentHeader name={tournament.name} onTeamsDisplayClick={onTeamsDisplayClick} teamsOpen={state.teamsOpen} />
+      <TournamentPlanning brackets={state.brackets} teams={tournament.teams} onMatchDone={onMatchDone} teamsOpen={state.teamsOpen} />
     </div>
   );
 };

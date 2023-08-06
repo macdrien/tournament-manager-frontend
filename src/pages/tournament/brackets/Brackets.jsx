@@ -7,7 +7,7 @@ const Brackets = (props) => {
 
   const winnerName = () => {
     const lastMatch = brackets[brackets.length - 1][0];
-    return lastMatch.teams[lastMatch.result[0] > lastMatch.result[1] ? 0 : 1];
+    return lastMatch.teams[lastMatch.result[0] > lastMatch.result[1] ? 0 : 1]?.name;
   }
 
   if (brackets?.length) {
@@ -56,7 +56,10 @@ Brackets.propTypes = {
   brackets: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
-        teams: PropTypes.arrayOf(PropTypes.string),
+        teams: PropTypes.arrayOf(PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          players: PropTypes.arrayOf(PropTypes.string),
+        })),
         result: PropTypes.arrayOf(PropTypes.number),
       })
     )
@@ -65,7 +68,10 @@ Brackets.propTypes = {
     round: PropTypes.number,
     matchIndex: PropTypes.number,
     match: PropTypes.shape({
-      teams: PropTypes.arrayOf(PropTypes.string),
+      teams: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        players: PropTypes.arrayOf(PropTypes.string),
+      })),
       result: PropTypes.arrayOf(PropTypes.number),
     }),
   }),

@@ -14,6 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .tournamentPlanning {
@@ -124,7 +125,7 @@
 
 .vs:disabled,
 .vs:disabled:hover {
-  background-color: inherit;
+  background-color: var(--alt);
   color: var(--secondary);
 }
 
@@ -196,4 +197,48 @@ input[type=number] {
 .winner > span {
   font-size: 1.5em;
   text-decoration: underline;
+}
+
+.teamsDisplay {
+  position: absolute;
+  left: 2vw;
+  border: none;
+  box-shadow: none;
+}
+
+.teamsDisplay::after {
+  content: ' >>'
+}
+
+.teamsDisplay:hover {
+  background-color: inherit;
+  color: inherit;
+  text-decoration: underline;
+}
+
+.teamsDisplay.open::after {
+  content: ' <<';
+}
+
+.teamsSection {
+  height: 80%;
+  padding: 3% 2%;
+  min-width: 25vw;
+  max-width: 50vw;
+  display: grid;
+  grid-column-gap: 25%;
+  grid-row-gap: 10%;
+}
+
+.teamsSection div {
+  height: fit-content;
+}
+
+.teamName {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.teamPlayers {
+  list-style: none;
 }

@@ -35,7 +35,7 @@ const NextMatch = (props) => {
 
   return state?.match && (
     <div className="nextMatch">
-      <div className={`nextMatchTeam ${state.match.result[0] > state.match.result[1] ? 'winningTeam' : '' }`}>{state.match.teams[0]}</div>
+      <div className={`nextMatchTeam ${state.match.result[0] > state.match.result[1] ? 'winningTeam' : '' }`}>{state.match.teams[0].name}</div>
       <input
         type="number"
         className="nextMatchScoreInput"
@@ -53,7 +53,7 @@ const NextMatch = (props) => {
         onChange={event => onScoreChange(event, 1)}
         style={{width: state.resultSize[1]}}
       />
-      <div className={`nextMatchTeam ${state.match.result[1] > state.match.result[0] ? 'winningTeam' : '' }`}>{state.match.teams[1]}</div>
+      <div className={`nextMatchTeam ${state.match.result[1] > state.match.result[0] ? 'winningTeam' : '' }`}>{state.match.teams[1].name}</div>
       <button onClick={_event => onMatchDone(nextMatch.round, nextMatch.matchIndex, state.match)}>Terminer</button>
     </div>
   );
@@ -64,7 +64,10 @@ NextMatch.propTypes = {
     round: PropTypes.number,
     matchIndex: PropTypes.number,
     match: PropTypes.shape({
-      teams: PropTypes.arrayOf(PropTypes.string),
+      teams: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        players: PropTypes.arrayOf(PropTypes.string),
+      })),
       result: PropTypes.arrayOf(PropTypes.number),
     }),
   }),
