@@ -5,17 +5,19 @@ const TeamsNames = (props) => {
 
   return (
     <div className="teamsNames">
-      <p className="title">Noms</p>
-      {teams.slice(0, teamsCount).map((team, index) => (
-        <input
-          key={index}
-          type="text"
-          name={`teams[${index}]`}
-          value={team}
-          onChange={(event) => onChange(index, event.target.value)}
-          placeholder={["Equipe", index + 1].join(" ")}
-        />
-      ))}
+      <p className="title">Noms des équipes</p>
+      <div className='selectorDiv'>
+        {teams.slice(0, teamsCount).map((team, index) => (
+          <input
+            key={index}
+            type="text"
+            name={`teams[${index}]`}
+            value={team}
+            onChange={(event) => onChange(index, event.target.value)}
+            placeholder={["Equipe", index + 1].join(" ")}
+          />
+        ))}
+      </div>
     </div>
   );
 };

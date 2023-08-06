@@ -4,16 +4,14 @@
     justify-content: space-around;
 }
 
-.teamsCountSection {
-    text-align: center;
+.selectorDiv {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 1em;
+    justify-content: center;
 }
 
-.teamsCountSelection {
+.teamsCountSelection > .selectorDiv > div{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: fit-content;
@@ -24,17 +22,17 @@
     text-align: center;
 }
 
-.teamsNames {
+.teamsNames > .selectorDiv, .playersNames > .selectorDiv {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.teamsNames p {
+.teamsNames p, .playersNames p {
     text-align: center;
 }
 
-.teamsNames input {
+.teamsNames input, .playersNames input {
     padding: 1px;
 }
 

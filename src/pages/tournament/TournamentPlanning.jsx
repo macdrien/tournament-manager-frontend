@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 import Brackets from "./brackets/Brackets";
 import NextMatch from "./NextMatch";
 import { useEffect, useState } from "react";
+import Teams from "./Teams.jsx";
 
 const TournamentPlanning = (props) => {
-  const { brackets, onMatchDone } = props;
+  const { brackets, onMatchDone, teamsOpen, teams } = props;
 
   const [nextMatch, setNextMatch] = useState(null);
 
@@ -28,7 +29,7 @@ const TournamentPlanning = (props) => {
   return (
     brackets.length && (
       <div className="tournamentPlanning">
-        <Brackets brackets={brackets} nextMatch={nextMatch} />
+        {teamsOpen ? <Teams teams={teams} /> : <Brackets brackets={brackets} nextMatch={nextMatch} />}
         {nextMatch && <>
         <div className="planningSeparator"></div>
           <NextMatch nextMatch={nextMatch} onMatchDone={onMatchDone} />
@@ -39,17 +40,29 @@ const TournamentPlanning = (props) => {
   );
 };
 
+TournamentPlanning.defaultProps = {
+  teamsOpen: false,
+}
+
 TournamentPlanning.propTypes = {
+  teams: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    players: PropTypes.arrayOf(PropTypes.string),
+  })),
   brackets: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
-        teams: PropTypes.arrayOf(PropTypes.string),
+        teams: PropTypes.arrayOf(PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          players: PropTypes.arrayOf(PropTypes.string),
+        })),
         result: PropTypes.arrayOf(PropTypes.number),
         matchDone: PropTypes.bool.isRequired,
       })
     )
   ),
   onMatchDone: PropTypes.func.isRequired,
+  teamsOpen: PropTypes.bool,
 };
 
 export default TournamentPlanning;
