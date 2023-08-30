@@ -76,26 +76,25 @@ const CreateTournament = () => {
 
   const checkFormEmpty = (formState = state) => {
     const { tournamentName, players, teams, playersPerTeam, numberOfTeams } = formState;
-    return !!(
-      !tournamentName?.length &&
-      !teams.slice(0, numberOfTeams).filter((team) => team?.length).length &&
-      !players.slice(0, playersPerTeam).filter((player) => player?.length).length
-    );
+    const numberOfPlayers = playersPerTeam * numberOfTeams;
+
+    const tournamentNameEmpty = !tournamentName?.length;
+    const teamNamesSectionEmpty = !teams.slice(0, numberOfTeams).filter((team) => team?.length).length;
+    const playerNamesSectionEmpty = !players.slice(0, numberOfPlayers).filter((player) => player?.length).length;
+
+    return tournamentNameEmpty && teamNamesSectionEmpty && playerNamesSectionEmpty;
   };
 
   const validateForm = (formState = state) => {
     const { tournamentName, players, teams, playersPerTeam, numberOfTeams } = formState;
-    return !!(
-      tournamentName?.length &&
-      teams.slice(0, numberOfTeams).filter((team) => team?.length).length === numberOfTeams &&
-      (
-        (
-          playersPerTeam !== 1 &&
-          players.slice(0, playersPerTeam * numberOfTeams).filter((player) => player?.length).length === playersPerTeam * numberOfTeams
-        ) ||
-        playersPerTeam === 1
-      )
-    );
+    const numberOfPlayers = playersPerTeam * numberOfTeams;
+
+    const tournamentNameValid = tournamentName?.length;
+    const teamNamesValid = teams.slice(0, numberOfTeams).filter((team) => team?.length).length === numberOfTeams;
+    const playerNamesValid = playersPerTeam === 1 ||
+      players.slice(0, numberOfPlayers).filter((player) => player?.length).length === numberOfPlayers;
+
+    return tournamentNameValid && teamNamesValid && playerNamesValid;
   };
 
   const onTeamCountChange = (newValue) => {
