@@ -176,12 +176,12 @@ const CreateTournament = () => {
           onPlayersPerTeamChange={onPlayersPerTeamChange}
           playersPerTeam={state.playersPerTeam}
         />
-        {state.playersPerTeam > 1 ?
+        {state.playersPerTeam > 1 &&
           <PlayersNames
             players={state.players}
             onChange={onPlayerNameChange}
             playersCount={state.playersPerTeam * state.numberOfTeams}
-          /> : ''
+          />
         }
         <TeamsNames
           teams={state.teams}
