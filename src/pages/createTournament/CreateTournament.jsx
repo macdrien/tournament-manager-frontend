@@ -59,7 +59,7 @@ const CreateTournament = () => {
     teamCountOptions: [2, 4, 8, 16],
     numberOfTeams: 4,
     playersPerTeam: 1,
-    players: Array(1).fill("", 0),
+    players: [],
     teams: Array(16).fill("", 0),
     tournamentName: "",
     isFormValid: false,
@@ -156,6 +156,7 @@ const CreateTournament = () => {
   const onResetClick = () => {
     setState({
       ...state,
+      players: [],
       teams: Array(16).fill("", 0),
       tournamentName: "",
       isFormValid: false,
