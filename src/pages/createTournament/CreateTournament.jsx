@@ -66,6 +66,14 @@ const CreateTournament = () => {
     isFormEmpty: true,
   });
 
+  const checkFormAndUpdate = newFormState => {
+    setState({
+      ...newFormState,
+      isFormValid: validateForm(newFormState),
+      isFormEmpty: checkFormEmpty(newFormState)
+    });
+  };
+
   const checkFormEmpty = (formState = state) => {
     const { tournamentName, players, teams, playersPerTeam, numberOfTeams } = formState;
     return !!(
@@ -91,16 +99,10 @@ const CreateTournament = () => {
   };
 
   const onTeamCountChange = (newValue) => {
-    const newFormState = {
+    checkFormAndUpdate({
       ...state,
       numberOfTeams: newValue,
       players: updatePlayersArray(newValue, state.playersPerTeam),
-    };
-
-    setState({
-      ...newFormState,
-      isFormValid: validateForm(newFormState),
-      isFormEmpty: checkFormEmpty(newFormState),
     });
   };
 
@@ -110,47 +112,28 @@ const CreateTournament = () => {
   };
 
   const onPlayersPerTeamChange = newValue => {
-    const newFormState = {
+    checkFormAndUpdate({
       ...state,
       playersPerTeam: newValue,
       players: updatePlayersArray(state.numberOfTeams, newValue),
-    };
-    setState({
-      ...newFormState,
-      isFormValid: validateForm(newFormState),
-      isFormEmpty: checkFormEmpty(newFormState)
     });
   }
 
   const onTeamNameChange = (index, newName) => {
     const teams = state.teams;
     teams.splice(index, 1, newName);
-
-    const newFormState = { ...state, teams };
-    setState({
-      ...newFormState,
-      isFormValid: validateForm(newFormState),
-      isFormEmpty: checkFormEmpty(newFormState)
-    });
+    checkFormAndUpdate({ ...state, teams });
   };
 
   const onPlayerNameChange = (index, newName) => {
     const players = state.players;
     players.splice(index, 1, newName);
+    checkFormAndUpdate({ ...state, players });
 
-    const newFormState = { ...state, players };
-    const isFormValid = validateForm(newFormState);
-    const isFormEmpty = checkFormEmpty(newFormState);
-
-    setState({ ...newFormState, isFormValid, isFormEmpty });
   };
 
   const onTournamentNameChange = (tournamentName) => {
-    const newFormState = { ...state, tournamentName };
-    const isFormValid = validateForm(newFormState);
-    const isFormEmpty = checkFormEmpty(newFormState);
-
-    setState({ ...newFormState, isFormValid, isFormEmpty });
+    checkFormAndUpdate({ ...state, tournamentName });
   };
 
   const onResetClick = () => {
