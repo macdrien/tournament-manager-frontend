@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { random } from "../../utils/math";
 import { cloneDeep } from "lodash";
-import TournamentHeader from "./TournamentHeader";
 
 import "./Tournament.css";
-import TournamentPlanning from "./TournamentPlanning";
+import Teams from "./Teams.jsx";
+import Brackets from "./brackets/Brackets.jsx";
+import NextMatch from "./NextMatch.jsx";
 
 const loaderTournament = async ({ request }) => {
   const url = new URL(request.url);
@@ -15,7 +16,9 @@ const loaderTournament = async ({ request }) => {
 
 const Tournament = () => {
   const { tournament } = useLoaderData();
+
   const [state, setState] = useState({ brackets: [], teamsOpen: false, });
+  const [nextMatch, setNextMatch] = useState(null);
 
   useEffect(() => {
     const teamsBuffer = cloneDeep(tournament.teams);
@@ -50,6 +53,10 @@ const Tournament = () => {
     setState({ brackets });
   }, []);
 
+  useEffect(() => {
+    setNextMatch(findNextMatch());
+  }, [state.brackets]);
+
   const onMatchDone = (round, matchIndex, match) => {
     const brackets = cloneDeep(state.brackets);
     match.matchDone = true;
@@ -70,10 +77,33 @@ const Tournament = () => {
     setState({ ...state, teamsOpen: !state.teamsOpen });
   }
 
+  const findNextMatch = () => {
+    for (let roundCounter = 0; roundCounter < state.brackets.length; roundCounter++) {
+      const round = state.brackets[roundCounter];
+      for (let matchCounter = 0; matchCounter < round.length; matchCounter++) {
+        const match = round[matchCounter];
+        if (!match?.matchDone) {
+          return { round: roundCounter, matchIndex: matchCounter, match };
+        }
+      }
+    }
+    return null;
+  };
+
   return (
     <div className="tournament">
-      <TournamentHeader name={tournament.name} onTeamsDisplayClick={onTeamsDisplayClick} teamsOpen={state.teamsOpen} />
-      <TournamentPlanning brackets={state.brackets} teams={tournament.teams} onMatchDone={onMatchDone} teamsOpen={state.teamsOpen} />
+      <div className="tournamentHeader">
+        { tournament.playersPerTeam !== 1 && <button className={ state.teamsOpen ? "teamsDisplay open" : "teamsDisplay" } onClick={onTeamsDisplayClick} >Equipes</button> }
+        {name}
+      </div>
+
+      <div className="tournamentPlanning">
+        {state.teamsOpen ? <Teams teams={tournament.teams} /> : <Brackets brackets={state.brackets} nextMatch={nextMatch} />}
+        { nextMatch && <>
+          <div className="planningSeparator"></div>
+          <NextMatch nextMatch={nextMatch} onMatchDone={onMatchDone} />
+        </> }
+      </div>
     </div>
   );
 };
