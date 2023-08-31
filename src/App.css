@@ -125,3 +125,7 @@ input::placeholder {
 input.error {
   border-color: var(--error);
 }
+
+input.error:focus {
+  outline-color: var(--error);
+}
