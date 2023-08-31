@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { random } from "../../utils/math";
+import { random } from "../../utils.js";
 import { cloneDeep } from "lodash";
 
 import "./Tournament.css";

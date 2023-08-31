@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Form, redirect } from "react-router-dom";
 
-import { random } from "../../utils/math";
+import { findDuplicates, random } from "../../utils.js";
 
 import TeamsNumber from "./TeamsNumber";
 import TeamsNames from "./TeamsNames";
 import TournamentSection from "./TournamentSection";
 import PlayersNames from "./PlayersNames";
-import PlayersPerTeam from "./PlayersPerTeam.jsx";
+import PlayersPerTeam from "./PlayersPerTeam";
 
 import "./CreateTournament.css";
 
@@ -83,23 +83,6 @@ const CreateTournament = () => {
     const playerNamesSectionEmpty = !players.slice(0, numberOfPlayers).filter((player) => player?.length).length;
 
     return tournamentNameEmpty && teamNamesSectionEmpty && playerNamesSectionEmpty;
-  };
-
-  const findDuplicates = (array) => {
-    if ( array.length < 2 ) {
-      return [];
-    }
-
-    const duplicates = [];
-    console.log(array);
-    for (let counter = 0 ; counter < array.length - 1 ; counter++) {
-      const lastIndex = array.lastIndexOf(array[counter]);
-      if (counter !== lastIndex) {
-        duplicates.push(array[counter]);
-      }
-    }
-    console.log(duplicates);
-    return duplicates;
   };
 
   const validateForm = (formState = state) => {
