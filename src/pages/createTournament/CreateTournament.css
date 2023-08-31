@@ -1,20 +1,23 @@
 .tournamentCreation {
     width: 100vw;
+
     display: flex;
     justify-content: space-around;
 }
 
 .selectorDiv {
     height: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.teamsCountSelection > .selectorDiv > div{
+.teamsCountSelection > .selectorDiv > div {
+    width: fit-content;
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: fit-content;
     gap: 5px;
 }
 

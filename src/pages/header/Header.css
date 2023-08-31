@@ -1,22 +1,22 @@
 header {
-  position: sticky;
+  width: 98vw;
+  padding: 1vh 1vw 0 1vw;
 
+  position: sticky;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 1vh 1vw 0 1vw;
-  width: 98vw;
 
   background-color: inherit;
 }
 
 header h1 {
-  font-size: 1.2em;
   max-width: 15vw;
   width: fit-content;
 
   text-align: center;
+
+  font-size: 1.2em;
 }
 
 header h2 {
@@ -28,23 +28,26 @@ header h2 {
   left: calc(100vw - var(--width) * 2);
 
   font-size: 2em;
-
   text-align: center;
 }
 
 header .toggleTheme {
+  width: 50px;
+
   align-self: flex-start;
   position: relative;
-  width: 50px;
 }
 
 header label {
-  position: absolute;
   width: 100%;
   height: 25px;
+
+  position: absolute;
+
   background-color: var(--primary);
-  border-radius: 50px;
   cursor: pointer;
+
+  border-radius: 50px;
 }
 
 header input {
@@ -53,9 +56,11 @@ header input {
 }
 
 header .slider {
-  position: absolute;
   width: 100%;
   height: 100%;
+
+  position: absolute;
+
   border-radius: 50px;
   transition: 0.3s;
 }
@@ -65,20 +70,24 @@ header input:checked ~ .slider {
 }
 
 header .slider::before {
-  content: "";
+  width: 15px;
+  height: 15px;
+
   position: absolute;
   top: 5px;
   left: 10px;
-  width: 15px;
-  height: 15px;
+
+  background-color: var(--primary);
+
   border-radius: 50%;
   box-shadow: inset 5px 0 0 0 var(--alt);
-  background-color: var(--primary);
   transition: 0.3s;
+  content: "";
 }
 
 header input:checked ~ .slider::before {
-  transform: translateX(20px);
   background-color: var(--alt);
+
+  transform: translateX(20px);
   box-shadow: none;
 }

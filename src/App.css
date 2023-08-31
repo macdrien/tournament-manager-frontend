@@ -33,44 +33,49 @@
 }
 
 .app {
-    width: 100vw;
-    height: 100vh;
-    
-    display: flex;
-    flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 
-    letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
 
-    background-color: var(--alt);
-    color: var(--primary);
+  background-color: var(--alt);
+  color: var(--primary);
+
+  letter-spacing: 2px;
 }
 
 .content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 button {
   padding: 5px;
-  box-shadow: 1px 1px var(--primary);
+
   background-color: var(--alt);
   color: var(--primary);
+
+  box-shadow: 1px 1px var(--primary);
   border: 1px solid var(--primary);
 }
 
 button:hover {
-  box-shadow: none;
   background-color: var(--primary);
   color: var(--alt);
+
+  box-shadow: none;
 }
 
 button:disabled {
-  box-shadow: none;
   background-color: var(--alt);
   color: var(--secondary);
+
+  box-shadow: none;
 }
 
 button.success {
@@ -105,10 +110,12 @@ button.warning:hover {
 }
 
 input {
-    border: 1px solid var(--secondary);
-    padding: 2px;
-    background-color: inherit;
-    color: inherit;
+  padding: 2px;
+
+  background-color: inherit;
+  color: inherit;
+  
+  border: 1px solid var(--secondary);
 }
 
 input::placeholder {
