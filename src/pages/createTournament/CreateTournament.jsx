@@ -85,14 +85,32 @@ const CreateTournament = () => {
     return tournamentNameEmpty && teamNamesSectionEmpty && playerNamesSectionEmpty;
   };
 
+  const findDuplicates = (array) => {
+    if ( !array.length ) {
+      return [];
+    }
+
+    const duplicates = [];
+    for (let counter = 0 ; counter < array.length - 1 ; counter++) {
+      const lastIndex = array.lastIndexOf(array[counter]);
+      if (counter !== lastIndex) {
+        duplicates.push(array[counter]);
+      }
+    }
+    return duplicates;
+  };
+
   const validateForm = (formState = state) => {
     const { tournamentName, players, teams, playersPerTeam, numberOfTeams } = formState;
     const numberOfPlayers = playersPerTeam * numberOfTeams;
 
-    const tournamentNameValid = tournamentName?.length;
+    const tournamentNameValid = !!tournamentName?.length;
     const teamNamesValid = teams.slice(0, numberOfTeams).filter((team) => team?.length).length === numberOfTeams;
-    const playerNamesValid = playersPerTeam === 1 ||
-      players.slice(0, numberOfPlayers).filter((player) => player?.length).length === numberOfPlayers;
+
+    const needPlayers = playersPerTeam !== 1;
+    const allPlayersFilled = players.slice(0, numberOfPlayers).filter((player) => player?.length).length === numberOfPlayers;
+    const noDuplicatePlayerName = !findDuplicates(players).length;
+    const playerNamesValid = !needPlayers || (allPlayersFilled && noDuplicatePlayerName);
 
     return tournamentNameValid && teamNamesValid && playerNamesValid;
   };
