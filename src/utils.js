@@ -1,4 +1,5 @@
 const findDuplicates = (array) => {
+  array = array.filter(elt => elt.length);
   if ( array.length < 2 ) {
     return [];
   }
