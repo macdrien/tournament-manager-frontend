@@ -121,3 +121,7 @@ input {
 input::placeholder {
     color: var(--secondary);
 }
+
+input.error {
+  border-color: var(--error);
+}
