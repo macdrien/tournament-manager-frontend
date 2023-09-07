@@ -47,7 +47,7 @@ const TournamentSection = (props) => {
       {state.isModalOpen && (
         <Modal
           title="Validation"
-          text="Es-tu sûr de vouloir supprimer tout ce que tu as saisis ?"
+          body="Es-tu sûr de vouloir supprimer tout ce que tu as saisis ?"
           onValidate={validateReset}
           onCancel={cancelReset}
         />
