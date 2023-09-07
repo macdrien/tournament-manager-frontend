@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import Modal from "../../components/Modal/Modal";
+import ResetModal from "./ResetModal";
 
 const TournamentSection = (props) => {
   const {
@@ -44,14 +44,7 @@ const TournamentSection = (props) => {
         Réinitialiser
       </button>
 
-      {state.isModalOpen && (
-        <Modal
-          title="Validation"
-          body="Es-tu sûr de vouloir supprimer tout ce que tu as saisis ?"
-          onValidate={validateReset}
-          onCancel={cancelReset}
-        />
-      )}
+      {state.isModalOpen && (<ResetModal cancelReset={cancelReset} validateReset={validateReset} />)}
     </div>
   );
 };
