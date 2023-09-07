@@ -5,7 +5,7 @@ import "./Modal.css";
 const Modal = (props) => {
   const {
     title,
-    text,
+    body,
     validateText,
     cancelText,
     closeText,
@@ -35,16 +35,16 @@ const Modal = (props) => {
         <>
           <button
             className="modalValidate success"
-            onClick={(event) => onValidate(event)}
+            onClick={onValidate}
           >
             {validateText}
           </button>
-          <button className="modalCancel error" onClick={(event) => onCancel(event)}>
+          <button className="modalCancel error" onClick={onCancel}>
             {cancelText}
           </button>
         </>
       ) : (
-        <button className="modalClose error" onClick={(event) => onClose(event)}>
+        <button className="modalClose error" onClick={onClose}>
           {closeText}
         </button>
       )}
@@ -55,7 +55,7 @@ const Modal = (props) => {
     <div className="modalSection">
       <div className="modal">
         {title && <div className="title">{title}</div>}
-        <div>{text}</div>
+        <div>{body}</div>
         {buttons}
       </div>
       <div className="modalBlur" onClick={closeModalAction}></div>
@@ -65,7 +65,7 @@ const Modal = (props) => {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  body: PropTypes.oneOf(PropTypes.string, PropTypes.element).isRequired,
   validateText: PropTypes.string,
   cancelText: PropTypes.string,
   closeText: PropTypes.string,
