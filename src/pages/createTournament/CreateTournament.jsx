@@ -143,14 +143,17 @@ const CreateTournament = () => {
     checkFormAndUpdate({ ...state, tournamentName });
   };
 
-  const onResetClick = () => {
-    setState({
+  const onResetClick = (resetName=false, resetTeams=false, resetPlayers=false) => {
+    const newState = {
       ...state,
-      players: [],
-      teams: Array(16).fill("", 0),
-      tournamentName: "",
-      isFormValid: false,
-      isFormEmpty: true,
+      tournamentName: resetName ? "" : state.tournamentName,
+      players: resetPlayers ? Array(state.players.length).fill("", 0) : state.players,
+      teams: resetTeams ? Array(16).fill("", 0) : state.teams,
+    };
+    setState({
+      ...newState,
+      isFormValid: validateForm(newState),
+      isFormEmpty: checkFormEmpty(newState),
     });
   };
 
@@ -182,7 +185,7 @@ const CreateTournament = () => {
           tournamentName={state.tournamentName}
           onTournamentNameChange={onTournamentNameChange}
           isGenerationEnable={state.isFormValid}
-          onResetClickProp={onResetClick}
+          onResetClick={onResetClick}
           isFormEmpty={state.isFormEmpty}
         />
       </Form>

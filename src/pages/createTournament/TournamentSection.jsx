@@ -6,14 +6,14 @@ const TournamentSection = (props) => {
   const {
     tournamentName,
     onTournamentNameChange,
-    onResetClickProp,
+    onResetClick,
     isGenerationEnable,
     isFormEmpty,
   } = props;
 
   const [state, setState] = useState({ isModalOpen: false });
 
-  const onResetClick = (event) => {
+  const openModal = (event) => {
     event.preventDefault();
     setState({ isModalOpen: true });
   };
@@ -25,7 +25,7 @@ const TournamentSection = (props) => {
 
   const validateReset = (event) => {
     event.preventDefault();
-    onResetClickProp();
+    onResetClick(true, true, true);
     setState({ isModalOpen: false });
   };
 
@@ -40,7 +40,7 @@ const TournamentSection = (props) => {
       />
       <button disabled={!isGenerationEnable}>Générer</button>
 
-      <button onClick={(event) => onResetClick(event)} disabled={isFormEmpty}>
+      <button onClick={openModal} disabled={isFormEmpty}>
         Réinitialiser
       </button>
 
@@ -59,7 +59,7 @@ const TournamentSection = (props) => {
 TournamentSection.propTypes = {
   tournamentName: PropTypes.string.isRequired,
   onTournamentNameChange: PropTypes.func.isRequired,
-  onResetClickProp: PropTypes.func.isRequired,
+  onResetClick: PropTypes.func.isRequired,
   isGenerationEnable: PropTypes.bool.isRequired,
   isFormEmpty: PropTypes.bool.isRequired,
 };
