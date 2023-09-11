@@ -46,3 +46,9 @@
     align-items: center;
     gap: 1em;
 }
+
+.resetModalBody {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

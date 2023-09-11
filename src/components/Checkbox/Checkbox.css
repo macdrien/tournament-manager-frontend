@@ -1,0 +1,8 @@
+.checkbox {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .checkbox:hover {
+    text-decoration: underline;
+  }
