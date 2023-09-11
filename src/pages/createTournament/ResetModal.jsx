@@ -1,12 +1,50 @@
 import PropTypes from 'prop-types';
 import Modal from "../../components/Modal/Modal";
+import { useState } from 'react';
+import Checkbox from '../../components/Checkbox/Checkbox';
 
 const ResetModal = (props) => {
   const { cancelReset, validateReset } = props;
+  const [state, setState] = useState({
+    resetNameChecked: true,
+    resetTeamsChecked: true,
+    resetPlayersChecked: true,
+  });
+
+  const toggleResetNameChecked = () => {
+    setState({ ...state, resetNameChecked: !state.resetNameChecked });
+  }
+
+  const toggleResetTeamsChecked = () => {
+    setState({ ...state, resetTeamsChecked: !state.resetTeamsChecked });
+  }
+
+  const toggleResetPlayersChecked = () => {
+    setState({ ...state, resetPlayersChecked: !state.resetPlayersChecked });
+  }
+
+  const modalBody = <div className='resetModalBody'>
+    <p>Que voulez-vous réinitialiser ?</p>
+    <Checkbox
+      checked={state.resetNameChecked} 
+      text="Nom du tournoi" 
+      toggle={toggleResetNameChecked}
+    />
+    <Checkbox
+      checked={state.resetTeamsChecked} 
+      text="Noms des équipes" 
+      toggle={toggleResetTeamsChecked}
+    />
+    <Checkbox
+      checked={state.resetPlayersChecked} 
+      text="Noms des joueurs" 
+      toggle={toggleResetPlayersChecked}
+    />
+  </div>;
 
   return <Modal
     title="Validation"
-    body="Es-tu sûr de vouloir supprimer tout ce que tu as saisis ?"
+    body={modalBody}
     onValidate={validateReset}
     onCancel={cancelReset}
   />;
