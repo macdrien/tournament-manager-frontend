@@ -65,7 +65,7 @@ const Modal = (props) => {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  body: PropTypes.oneOf([PropTypes.string, PropTypes.element]),
+  body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   validateText: PropTypes.string,
   cancelText: PropTypes.string,
   closeText: PropTypes.string,
