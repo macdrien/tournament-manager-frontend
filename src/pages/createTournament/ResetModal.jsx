@@ -51,8 +51,11 @@ const ResetModal = (props) => {
 
   return <Modal
     title="Validation"
-    body={modalBody}
-    onValidate={validateReset}
+    body={modalBody ? modalBody : ''}
+    onValidate={event => validateReset(event,
+                          state.resetNameChecked,
+                          state.resetTeamsChecked,
+                          state.resetPlayersChecked)}
     onCancel={cancelReset}
   />;
 }
@@ -64,6 +67,9 @@ ResetModal.defaultProps = {
 }
 
 ResetModal.propTypes = {
+  canResetName: PropTypes.bool,
+  canResetTeams: PropTypes.bool,
+  canResetPlayers: PropTypes.bool,
   cancelReset: PropTypes.func.isRequired,
   validateReset: PropTypes.func.isRequired,
 }

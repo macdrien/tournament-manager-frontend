@@ -9,6 +9,9 @@ const TournamentSection = (props) => {
     onResetClick,
     isGenerationEnable,
     isFormEmpty,
+    canResetName,
+    canResetTeams,
+    canResetPlayers,
   } = props;
 
   const [state, setState] = useState({ isModalOpen: false });
@@ -23,9 +26,9 @@ const TournamentSection = (props) => {
     setState({ isModalOpen: false });
   };
 
-  const validateReset = (event) => {
+  const validateReset = (event, resetName, resetTeams, resetPlayers) => {
     event.preventDefault();
-    onResetClick(true, true, true);
+    onResetClick(resetName, resetTeams, resetPlayers);
     setState({ isModalOpen: false });
   };
 
@@ -44,7 +47,15 @@ const TournamentSection = (props) => {
         Réinitialiser
       </button>
 
-      {state.isModalOpen && (<ResetModal cancelReset={cancelReset} validateReset={validateReset} />)}
+      {state.isModalOpen && (
+        <ResetModal
+          canResetName={canResetName}
+          canResetTeams={canResetTeams}
+          canResetPlayers={canResetPlayers}
+          cancelReset={cancelReset}
+          validateReset={validateReset}
+        />
+      )}
     </div>
   );
 };
@@ -55,6 +66,9 @@ TournamentSection.propTypes = {
   onResetClick: PropTypes.func.isRequired,
   isGenerationEnable: PropTypes.bool.isRequired,
   isFormEmpty: PropTypes.bool.isRequired,
+  canResetName: PropTypes.bool.isRequired,
+  canResetTeams: PropTypes.bool.isRequired,
+  canResetPlayers: PropTypes.bool.isRequired,
 };
 
 export default TournamentSection;

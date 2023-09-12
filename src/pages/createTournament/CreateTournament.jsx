@@ -74,15 +74,21 @@ const CreateTournament = () => {
     });
   };
 
+  const areTeamsFilled = (teams, numberOfTeams) => {
+    return !!teams.slice(0, numberOfTeams).filter((team) => team?.length).length;
+  }
+
+  const arePlayersFilled = (players, numberOfTeams, playersPerTeam) => {
+    const numberOfPlayers = numberOfTeams * playersPerTeam;
+    return playersPerTeam !== 1 && !!players.slice(0, numberOfPlayers).filter((player) => player?.length).length;
+  }
+
   const checkFormEmpty = (formState = state) => {
     const { tournamentName, players, teams, playersPerTeam, numberOfTeams } = formState;
-    const numberOfPlayers = playersPerTeam * numberOfTeams;
 
-    const tournamentNameEmpty = !tournamentName?.length;
-    const teamNamesSectionEmpty = !teams.slice(0, numberOfTeams).filter((team) => team?.length).length;
-    const playerNamesSectionEmpty = !players.slice(0, numberOfPlayers).filter((player) => player?.length).length;
-
-    return tournamentNameEmpty && teamNamesSectionEmpty && playerNamesSectionEmpty;
+    return !tournamentName?.length &&
+      !areTeamsFilled(teams, numberOfTeams) &&
+      !arePlayersFilled(players, numberOfTeams, playersPerTeam);
   };
 
   const validateForm = (formState = state) => {
@@ -187,6 +193,9 @@ const CreateTournament = () => {
           isGenerationEnable={state.isFormValid}
           onResetClick={onResetClick}
           isFormEmpty={state.isFormEmpty}
+          canResetName={state.tournamentName.length !== 0}
+          canResetTeams={areTeamsFilled(state.teams, state.numberOfTeams)}
+          canResetPlayers={arePlayersFilled(state.players, state.numberOfTeams, state.playersPerTeam)}
         />
       </Form>
     </section>

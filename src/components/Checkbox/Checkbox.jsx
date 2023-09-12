@@ -9,6 +9,7 @@ const Checkbox = (props) => {
         type="checkbox"
         name="text"
         checked={checked}
+        onChange={toggle}
         />
         {text ? <label htmlFor='text'>{text}</label> : ''}
     </div>;
