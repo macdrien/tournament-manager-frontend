@@ -4,7 +4,14 @@ import { useState } from 'react';
 import Checkbox from '../../components/Checkbox/Checkbox';
 
 const ResetModal = (props) => {
-  const { cancelReset, validateReset } = props;
+  const {
+    canResetName,
+    canResetTeams,
+    canResetPlayers,
+    cancelReset,
+    validateReset,
+  } = props;
+
   const [state, setState] = useState({
     resetNameChecked: true,
     resetTeamsChecked: true,
@@ -25,21 +32,21 @@ const ResetModal = (props) => {
 
   const modalBody = <div className='resetModalBody'>
     <p>Que voulez-vous réinitialiser ?</p>
-    <Checkbox
+    { canResetName ? <Checkbox
       checked={state.resetNameChecked} 
       text="Nom du tournoi" 
       toggle={toggleResetNameChecked}
-    />
-    <Checkbox
+    /> : '' }
+    { canResetTeams ? <Checkbox
       checked={state.resetTeamsChecked} 
       text="Noms des équipes" 
       toggle={toggleResetTeamsChecked}
-    />
-    <Checkbox
+    /> : '' }
+    { canResetPlayers ? <Checkbox
       checked={state.resetPlayersChecked} 
       text="Noms des joueurs" 
       toggle={toggleResetPlayersChecked}
-    />
+    /> : '' }
   </div>;
 
   return <Modal
@@ -48,6 +55,12 @@ const ResetModal = (props) => {
     onValidate={validateReset}
     onCancel={cancelReset}
   />;
+}
+
+ResetModal.defaultProps = {
+  canResetName: false,
+  canResetTeams: false,
+  canResetPlayers: false,
 }
 
 ResetModal.propTypes = {
