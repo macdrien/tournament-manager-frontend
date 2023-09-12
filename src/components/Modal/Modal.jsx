@@ -55,7 +55,7 @@ const Modal = (props) => {
     <div className="modalSection">
       <div className="modal">
         {title && <div className="title">{title}</div>}
-        <div>{body}</div>
+        <div>{body ? body : ''}</div>
         {buttons}
       </div>
       <div className="modalBlur" onClick={closeModalAction}></div>
@@ -65,7 +65,7 @@ const Modal = (props) => {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  body: PropTypes.oneOf(PropTypes.string, PropTypes.element).isRequired,
+  body: PropTypes.oneOf([PropTypes.string, PropTypes.element]),
   validateText: PropTypes.string,
   cancelText: PropTypes.string,
   closeText: PropTypes.string,
