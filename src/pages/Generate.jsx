@@ -12,7 +12,7 @@ const Generate = () => {
     }
   }, [submit]);
   
-  return tournament ? '' : '';
+  return '';
 }
 
 export default Generate;

@@ -1,9 +1,7 @@
 import {createHashRouter} from "react-router-dom";
 import App from "./App.jsx";
-import { CreateTournament, Tournament, loaderTournament } from "./pages";
+import { CreateTournament, Generate, Tournament, loaderTournament } from "./pages";
 import {actionCreate, actionGenerate} from "./actions";
-
-import Generate from './pages/Generate.jsx';
 
 export default createHashRouter([
   {
