@@ -4,7 +4,8 @@ import {redirect} from "react-router-dom";
 import { random } from "../utils";
 
 export default async ({ request, _params }) => {
-  const tournament = JSON.parse(decodeURI(request.url.split('?tournament=')[1]));
+  const url = new URL(request.url);
+  const tournament = JSON.parse(url.searchParams.get("tournament"));
   
   const teamsBuffer = cloneDeep(tournament.teams);
   const brackets = [];
