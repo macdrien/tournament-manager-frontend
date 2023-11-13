@@ -1,7 +1,7 @@
 import {createHashRouter} from "react-router-dom";
 import App from "./App.jsx";
-import {CreateTournament, Tournament, actionCreate, loaderTournament } from "./pages/index.jsx";
-
+import { CreateTournament, Tournament, loaderTournament } from "./pages";
+import { actionCreate } from "./actions";
 export default createHashRouter([
   {
     path: "/",
