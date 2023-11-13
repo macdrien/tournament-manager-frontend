@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Header } from "./pages";
+import { Header, Home } from "./pages";
 import "./App.css";
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
     <div className="app" data-theme={darkTheme ? 'dark' : 'light'}>
       <Header title={pageTitle()} onThemeChange={onThemeChange} darkTheme={darkTheme}/>
       <div className="content">
-        <Outlet />
+        {location.pathname === '/' ? <Home/> : <Outlet />}
       </div>
     </div>
   );
