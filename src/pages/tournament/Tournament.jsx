@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { random } from "../../utils.js";
 import { cloneDeep } from "lodash";
 
 import "./Tournament.css";
@@ -21,36 +20,9 @@ const Tournament = () => {
   const [nextMatch, setNextMatch] = useState(null);
 
   useEffect(() => {
-    const teamsBuffer = cloneDeep(tournament.teams);
-    const brackets = [];
-    const round0 = [];
-
-    // Duels selection
-    while (teamsBuffer.length) {
-      const match = { teams: [], result: [0, 0], matchDone: false };
-
-      const firstIndex = random(teamsBuffer.length);
-      match.teams.push(teamsBuffer[firstIndex]);
-      teamsBuffer.splice(firstIndex, 1);
-
-      const secondIndex = random(teamsBuffer.length);
-      match.teams.push(teamsBuffer[secondIndex]);
-      teamsBuffer.splice(secondIndex, 1);
-
-      round0.push(match);
+    if (tournament?.brackets) {
+      setState({ ...state, brackets: tournament.brackets });
     }
-
-    brackets.push(round0);
-
-    for (let counter = tournament.teams.length / 2; counter > 1; counter /= 2) {
-      const round = [];
-      for (let bracket = 0; bracket < counter / 2; bracket++) {
-        round.push({ teams: [], result: [0, 0], matchDone: false });
-      }
-      brackets.push(round);
-    }
-
-    setState({ brackets });
   }, []);
 
   useEffect(() => {
